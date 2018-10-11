@@ -3,6 +3,7 @@ import random
 
 class Person(object):
     '''
+    Documentation:
     Person objects will populate the simulation.
 
     _____Attributes______:
@@ -41,12 +42,14 @@ class Person(object):
             is_vaccinated attribute is changed to True, and set self.infection to None.
     '''
 
-    def __init__(self, _id, is_vaccinated, infection=None):
+    def __init__(self,is_vaccinated, is_alive):
+    # How the code looked before \/
+    #def __init__(self, _id, is_vaccinated, infection=None):
         # TODO:  Finish this method.  Follow the instructions in the class documentation
         # to set the corret values for the following attributes.
-        self._id = None
-        self.is_vaccinated = None
-        self.is_alive = None
+        self._id = 0
+        self.is_vaccinated = False
+        self.is_alive = True
         self.infection = None
 
 
@@ -54,5 +57,5 @@ class Person(object):
         # TODO:  Finish this method. Follow the instructions in the class documentation
         # TODO: You will need to decide what parameters you pass into this method based on how you structure your class.
         # for resolve_infection.  If person dies, set is_alive to False and return False.
-        # If person lives, set is_vaccinated = True, infection = None, return True.  
+        # If person lives, set is_vaccinated = True, infection = None, return True.
         pass

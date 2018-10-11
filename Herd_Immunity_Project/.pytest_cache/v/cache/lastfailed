@@ -1,0 +1,4 @@
+{
+  "simulation_test.py::test_simulation_should_continue": true,
+  "test_sample.py::test_answer": true
+}
