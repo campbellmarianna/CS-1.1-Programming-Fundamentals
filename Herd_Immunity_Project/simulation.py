@@ -138,6 +138,7 @@ class Simulation(object):
         #     - There are no infected people left in the population.
         # In all other instances, the simulation should continue.
         """
+        Pseudocode:
         This method should return a boolean.
             # dead = dies from infection
             # create variable named death_counter set to 0
@@ -168,9 +169,27 @@ class Simulation(object):
                 vaccinated_counter += 1
         if len(population) ==  vaccinated_counter:
             return false
-        # SIMULATION should stopf
+        # SIMULATION should stop
         return True
 
+        """
+        Another way to structure the code:
+        # EVERYBODY dead
+        death_counter = 0
+        # iterate for entire population
+        for person in population:
+            # check to see if person is dead
+            if person.is_alive == false:
+                death_counter += 1
+            # if person not dead then check if they are infected
+            else:
+                # if person is infected and still alive in simulation then
+                # continue to run simulation
+                if person.infected != None:
+                    return True
+        if len(population) ==  death_counter:
+            return False
+        """
         pass
     #Me
     def run(self):
@@ -184,15 +203,32 @@ class Simulation(object):
         # have passed using the time_step_counter variable.  Make sure you remember to
         # the logger's log_time_step() method at the end of each time step, pass in the
         # time_step_counter variable!
+        """
+        Pseudocode:
+        time_step_counter = 0
+        while simulation_should_continue():
+            self.time_step()
+            time_step_counter += 1
+            log_time_step(time_step_counter)
+            should_continue = self.simulation_should_continue
+
+        """
         time_step_counter = 0
         # TODO: Remember to set this variable to an intial call of
         # self._simulation_should_continue()!
-        should_continue = None
+        should_continue = self._simulation_should_continue()
         while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.  At the end of each iteration of this loop, remember
         # to rebind should_continue to another call of self._simulation_should_continue()!
-            pass
+            self.time_step()
+            # Increment the counter by 1 each time
+            time_step_counter += 1
+            # update the logger's log_time_step method by passing in the
+            # time_step_counter
+            log_time_step(time_step_counter)
+            # rebind should_continue to another call of self._simulation_should_continue()
+            should_continue = self.simulation_should_continue
         print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
     # Me
     def time_step(self):
@@ -208,12 +244,59 @@ class Simulation(object):
             #               - Call simulation.interaction(person, random_person)
             #               - Increment interaction counter by 1.
             pass
+        """
+        Pseudocode:
+        This method should contain all the basic logic for computing one time
+        step in the simulation.
+        # infected_people = []
+        # for person in the population
+            if person is alive and is not vaccinated:
+                infected_people += person
+        # for infected_person in infected_people:
+            if
+            # for _ in range(100):
+                # random_index = random.randint(0, len(infected_people)- 1)
+                # random_person = infected_people[random_index]
+                # if random_person.is_alive == False:
+                    continue
+                # else:
+                    simulation.interaction(infected_person, random_person)
+                    interaction_counter += 1
+        """
+        infected_people = []
+        # Get infect people from out of the population
+        for person in population:
+            if person.is_alive == True and person.is_vaccinated == False:
+                infected_people += person
+        # For each infected person in the population
+        for infected_person in infected_people:
+            # Repeat for 100 total interactions:
+            for _ in range(100):
+                # Grab a random person from the population
+                random_index = random.randint(0, len(infected_people)- 1)
+                random_person = infected_people[random_index]
+                # If the person is dead, continue and grab another new
+                # person from the population.
+                if random_person.is_alive == False:
+                    continue
+                else:
+                    # Call simulation.interaction(person, random_person)
+                    simulation.interaction(infected_person, random_person)
+                    # interaction_counter += 1
+                    interaction_counter += 1
+
+
+
+
     # Me
     def interaction(self, person, random_person):
         # TODO: Finish this method! This method should be called any time two living
         # people are selected for an interaction.  That means that only living people
         # should be passed into this method.  Assert statements are included to make sure
         # that this doesn't happen.
+        """
+        If this code return false this function should not run
+        """
         assert person1.is_alive == True
         assert random_person.is_alive == True
 
@@ -229,7 +312,16 @@ class Simulation(object):
             #     attribute can be changed to True at the end of the time step.
         # TODO: Remember to call self.logger.log_interaction() during this method!
         pass
-
+        """
+        Pseudocode:
+        if random_person.is_vaccinated == True:
+            continue
+        if random_person.infected != None:
+            continue
+        if random_person.is == True and random_person.is_vaccinated
+        """
+        # Function still needs code
+        
     def _infect_newly_infected(self):
         # TODO: Finish this method! This method should be called at the end of
         # every time step.  This method should iterate through the list stored in

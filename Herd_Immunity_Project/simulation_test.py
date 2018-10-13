@@ -1,20 +1,41 @@
 # Pytest to test _simulation_should_continue() function
 import pytest
 from person import Person
+from simulation import Simulation
 import simulation
 import sys
 
-def test_simulation_should_continue():
+def test_simulation_simulation_should_continue():
+    simulation = Simulation(pop_size, vacc_percentage, virus_name, mortality_rate,
+    basic_repro_num, initial_infected)
     testing_population = []
     num_of_people = 6
-    while len(testing_population) != num_of_people:
-        person = Person(False, False)
+    for i range(0, num_of_people):
+        person = Person(i, False, False)
         testing_population.append(person)
+    while people still alive or people still infected
+    # while len(testing_population) != num_of_people:
+    #     person = Person(False, False)
+    #     testing_population.append(person)
     # call function
     # assert False
-    assert _simulation_should_continue(self) == False
+    # Point out error I get when running test: NameError for
+    # _simulation_should_continue
+    assert _simulation_should_continue() == False
 
+"""
+Pseudocode:
+What do we want to test? We want to test to see if the time counter is greater
+than zero so we create a population that passes the edge cases and causes
+_simulation_should_continue to return True. So, that means when the person is
+alive and not vaccinated the simulation will continue so we want to create a
+population like that.
+# set an should_continue = True
+"""
+# def test_simulation_run():
 
+# test for interaction function
+# once population is created check to see
 
 # Test Code
 # params = sys.argv[1:]

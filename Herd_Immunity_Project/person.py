@@ -41,10 +41,10 @@ class Person(object):
             - If random number is larger, person has survived disease.  Person's
             is_vaccinated attribute is changed to True, and set self.infection to None.
     '''
-
-    def __init__(self,is_vaccinated, is_alive):
+    # When pasing in people object increment a counter
+    # def __init__(self,is_vaccinated, is_alive):
     # How the code looked before \/
-    #def __init__(self, _id, is_vaccinated, infection=None):
+    def __init__(self, _id, is_vaccinated, infection=None):
         # TODO:  Finish this method.  Follow the instructions in the class documentation
         # to set the corret values for the following attributes.
         self._id = 0
