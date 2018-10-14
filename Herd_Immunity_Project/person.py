@@ -44,18 +44,27 @@ class Person(object):
     # When pasing in people object increment a counter
     # def __init__(self,is_vaccinated, is_alive):
     # How the code looked before \/
-    def __init__(self, _id, is_vaccinated, infection=None):
+    def __init__(self, _id, is_vaccinated, infection):
         # TODO:  Finish this method.  Follow the instructions in the class documentation
         # to set the corret values for the following attributes.
-        self._id = 0
-        self.is_vaccinated = False
+        self._id = _id
+        self.is_vaccinated = is_vaccinated
         self.is_alive = True
-        self.infection = None
+        self.infection = infection
 
 
-    def did_survive_infection(self):
+    def did_survive_infection(self, mortality_rate):
         # TODO:  Finish this method. Follow the instructions in the class documentation
         # TODO: You will need to decide what parameters you pass into this method based on how you structure your class.
         # for resolve_infection.  If person dies, set is_alive to False and return False.
         # If person lives, set is_vaccinated = True, infection = None, return True.
-        pass
+        random_num = random.randint(0, 1)
+        # if the person survives
+        if random_num > mortality_rate:
+            self.is_vaccinated = True
+            self.infection = None
+            return True
+        else:
+            self.is_alive = False
+            self.infection = None
+            return False
