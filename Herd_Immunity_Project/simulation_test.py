@@ -19,8 +19,8 @@ def test_simulation_simulation_should_continue():
     # else:
     #     initial_infected = 1
     # Run Simulation
-    simulation = Simulation(10000, 0.10, "Ebola", 0.70,
-    0.25, 10)
+    simulation = Simulation(10, 0.10, "Ebola", 0.70,
+    0.25, 2)
     simulation.run()
     # Create Population
     # testing_population = []
