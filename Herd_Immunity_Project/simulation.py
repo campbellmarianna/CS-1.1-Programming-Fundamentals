@@ -1,23 +1,11 @@
+# This a collaboration betweeen Marianna Campbell and Eric Botcher.
+
 import random, sys
 random.seed(42)
 from person import Person
 from logger import Logger
 from virus import Virus
 
-def validator_num (input_text, low_num, high_num):
-    is_valid = False
-    while True:
-        try:
-            print(low_num)
-            print(high_num)
-            entry = input(input_text)
-            if entry.isdigit() == True and int(entry) > int(low_num) and int(entry) < int(high_num) :
-                is_valid = True
-                return entry
-            else:
-                print("Invalid Input! Try again...")
-        except:
-            print("Error Invalid Input! Try again...")
 
 class Simulation(object):
     '''
@@ -385,8 +373,7 @@ class Simulation(object):
             #     than basic_repro_num, random_person's ID should be appended to
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
-        # TODO: Remember to call self.logger.log_interaction() during this method!
-        pass
+        # TODO: Remember to call self.logger.log_interaction() during this method
         """
         Pseudocode:
         if random_person.is_vaccinated == True:
@@ -406,7 +393,7 @@ class Simulation(object):
             if random_num <= self.basic_repro_num:
                 self.newly_infected.append(random_person._id)
         else:
-            pass
+            # what happens when they interact and the random person doesn't get sick?
         # Comment in when you have coded the logger
         self.logger.log_interaction(person, random_person)
 
