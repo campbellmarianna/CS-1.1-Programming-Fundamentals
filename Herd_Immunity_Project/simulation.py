@@ -109,7 +109,7 @@ class Simulation(object):
         # TODO: Create a Logger object and bind it to self.logger.  You should use this
         # logger object to log all events of any importance during the simulation.  Don't forget
         # to call these logger methods in the corresponding parts of the simulation!
-        self.logger = None
+        self.logger = Logger(self.file_name)
 
         # This attribute will be used to keep track of all the people that catch
         # the infection during a given time step. We'll store each newly infected
@@ -182,7 +182,7 @@ class Simulation(object):
                 self.population.append(Person(self.next_person_id,False, None))
                 print("We created people that are alive.")
             # assigns a new id
-            self.next_person_id += 1
+        self.next_person_id += 1
             # print(f"Number of people {len(self.population)}")
         return self.population
 
@@ -292,7 +292,7 @@ class Simulation(object):
             # update the logger's log_time_step method by passing in the
             # time_step_counter
             # Coment in once you create logger:
-            # log_time_step(time_step_counter)
+            self.logger.log_time_step(time_step_counter)
             # rebind should_continue to another call of self._simulation_should_continue()
             should_continue = self._simulation_should_continue()
         print('The simulation has ended after {} turns.'.format(time_step_counter))
@@ -359,6 +359,7 @@ class Simulation(object):
                 if person.is_alive == True and person.infection != None:
                     # for logger function what this function returns
                     person.did_survive_infection(self.mortality_rate)
+                    self.logger.log_infection_survival(person, self.population)
 
             self._infect_newly_infected()
 
@@ -407,7 +408,7 @@ class Simulation(object):
         else:
             pass
         # Comment in when you have coded the logger
-        #self.logger.log_interaction()
+        self.logger.log_interaction(person, random_person)
 
     def _infect_newly_infected(self):
         # TODO: Finish this method! This method should be called at the end of

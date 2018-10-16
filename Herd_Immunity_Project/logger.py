@@ -93,8 +93,7 @@ class Logger(object):
         print("   # of interactions: {interactions}")
 
 
-    def log_interaction(self, person1, person2, did_infect=None,
-                        person2_vacc=None, person2_sick=None):
+    def log_interaction(self, person1, person2):
         # TODO: Finish this method.  The Simulation object should use this method to
         # log every interaction a sick individual has during each time step.  This method
         # should accomplish this by using the information from person1 (the infected person),
@@ -137,18 +136,18 @@ class Logger(object):
         """
         with open(self.file_name, "w") as file:
             # if person1 has the virus then person1 infects person2
-            if person1.infected != None:
-                file.write(f"/n {person1.ID} infects {person2.ID} because already sick.")
+            if person1.infection != None:
+                file.write(f"/n {person1._id} infects {person2._id} because already sick. /n")
             # if person2 has the virus then person1 infects person2
-            if person2.infected != None:
-                file.write(f"/n {person2.ID} infects {person1.ID} because already sick.")
-            if person1.is_vaccinated = True:
-                file.write(f"/n {person1.ID} didn't infect {person2.ID} because vaccinated.")
-            if person2.is_vaccinated = True:
-                file.write(f"/n {person2.ID} didn't infect {person1.ID} because vaccinated.")
+            if person2.infection != None:
+                file.write(f"/n {person2._id} infects {person1._id} because already sick. /n")
+            if person1.is_vaccinated == True:
+                file.write(f"/n {person1._id} didn't infect {person2._id} because vaccinated. /n")
+            if person2.is_vaccinated == True:
+                file.write(f"/n {person2._id} didn't infect {person1._id} because vaccinated. /n")
         file.close()
 
-    def log_infection_survival(self, person, did_die_from_infection):
+    def log_infection_survival(self, person, population):
         # TODO: Finish this method.  The Simulation object should use this method to log
         # the results of every call of a Person object's .resolve_infection() method.
         # If the person survives, did_die_from_infection should be False.  Otherwise,
@@ -163,10 +162,16 @@ class Logger(object):
         else:
             did_die_from_infection = True
         """
-        if person.is_alive == True:
-            did_die_from_infection = False
-        else:
-            did_die_from_infection = True
+        did_die_from_infection = None
+        with open(self.file_name, "a") as file:
+            for person in population:
+                if person.is_alive == True:
+                    did_die_from_infection == False
+                    file.write(f"/n Person ID: {person._id} survived infection and is now immune")
+            else:
+                did_die_from_infection = True
+                file.write(f"/n Person ID: {person._id} died from infection./n")
+            file.close()
 
     def log_time_step(self, time_step_number):
         # TODO: Finish this method.  This method should log when a time step ends, and a
@@ -177,4 +182,10 @@ class Logger(object):
         # to compute these statistics for you, as a Logger's job is just to write logs!
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        def log_time_step(self, time_step_number):
+            next_step = int(time_step_number + 1)
+            with open(self.file_name, "a") as file:
+                file.write("/n ===========================================/n")
+                file.write(f"/n Time step {time_step_number} has ended, starting time step {next_step}/n")
+                file.write("/n ===========================================/n")
+                file.close()
